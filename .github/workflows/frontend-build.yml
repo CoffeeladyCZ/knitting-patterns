@@ -11,11 +11,6 @@ on:
 jobs:
   build-frontend:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./knitting-pattern
-
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
