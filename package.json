@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "yarn@4.10.3",
+  "author": "Marcela Karafizievová",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
