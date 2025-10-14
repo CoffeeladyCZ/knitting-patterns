@@ -1,0 +1,39 @@
+name: Build Frontend
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22.x
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Format code
+        run: yarn format:check
+
+      - name: Lint code
+        run: yarn lint
+
+      - name: Typecheck code
+        run: yarn typecheck
+
+      - name: Build
+        run: yarn build
