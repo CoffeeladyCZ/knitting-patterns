@@ -1,4 +1,4 @@
-import { Card } from './components/Card'
+import { Dashboard } from './components/Dashboard'
 import './App.css'
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        <Card />
+        <Dashboard />
       </div>
     </>
   )
