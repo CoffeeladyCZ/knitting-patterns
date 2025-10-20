@@ -1,26 +1,19 @@
-type Props = {
-  name: string;
-  image: string;
-  gaude_description: string;
-};
+import { type RepositoryNode } from "../api/types";
 
-export const Card = ({ pattern }: { pattern: Props }) => {
+interface CardProps {
+  repository: RepositoryNode;
+  onClick: () => void;
+}
+
+export const Card = ({ repository, onClick }: CardProps) => {
   return (
     <div
-      className="border border-gray-300 rounded-md p-4 flex flex-col items-center w-fit max-w-[320px] cursor-pointer"
-      onClick={() => {
-        console.log("clicked");
-      }}
+      className="border border-gray-300 rounded-md p-4 flex flex-col items-center w-fit max-w-[320px] cursor-pointer hover:shadow-lg transition-shadow"
+      onClick={onClick}
     >
-      <img
-        src={pattern.image}
-        alt="Card"
-        className="w-[320px] h-full object-cover"
-      />
-      <p className="text-lg font-bold">{pattern.name}</p>
-      <p className="text-sm text-gray-500">
-        Craft: {pattern.gaude_description}
-      </p>
+      <p className="text-lg font-bold">{repository.name}</p>
+      <p className="text-sm text-gray-500">{repository.description}</p>
+      <p className="text-sm text-gray-500">{repository.url}</p>
     </div>
   );
 };
