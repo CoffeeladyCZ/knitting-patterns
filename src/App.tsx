@@ -9,7 +9,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-type View = 'dashboard' | 'repository';
+type View = "dashboard" | "repository";
 
 interface RepositoryViewState {
   owner: string;
@@ -17,8 +17,9 @@ interface RepositoryViewState {
 }
 
 function App() {
-  const [currentView, setCurrentView] = useState<View>('dashboard');
-  const [repositoryState, setRepositoryState] = useState<RepositoryViewState | null>(null);
+  const [currentView, setCurrentView] = useState<View>("dashboard");
+  const [repositoryState, setRepositoryState] =
+    useState<RepositoryViewState | null>(null);
 
   const logError = (error: Error) => {
     Sentry.captureException(error);
@@ -26,18 +27,18 @@ function App() {
 
   const navigateToRepository = (owner: string, name: string) => {
     setRepositoryState({ owner, name });
-    setCurrentView('repository');
+    setCurrentView("repository");
   };
 
   const navigateToDashboard = () => {
-    setCurrentView('dashboard');
+    setCurrentView("dashboard");
     setRepositoryState(null);
   };
-  
+
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary fallbackRender={() => null} onError={logError}>
-        {currentView === 'dashboard' ? (
+        {currentView === "dashboard" ? (
           <Dashboard onRepositoryClick={navigateToRepository} />
         ) : (
           repositoryState && (

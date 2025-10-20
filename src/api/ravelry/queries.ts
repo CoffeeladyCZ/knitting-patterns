@@ -8,24 +8,25 @@ export const getPatterns = async (): Promise<PatternResponse> => {
 
   try {
     const response = await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Authorization': `Basic ${base64Credentials}`,
-        'Accept': 'application/json'
-      }
+        Authorization: `Basic ${base64Credentials}`,
+        Accept: "application/json",
+      },
     });
     if (!response.ok) {
       const errorBody = await response.text();
-      throw new Error(`HTTP chyba! Stav: ${response.status}. Zpráva: ${errorBody.substring(0, 100)}...`);
+      throw new Error(
+        `HTTP chyba! Stav: ${response.status}. Zpráva: ${errorBody.substring(0, 100)}...`,
+      );
     }
 
     const data = await response.json();
 
     return data;
-
   } catch (error) {
-    console.error('Při volání API došlo k chybě:', (error as Error).message);
-    
-    throw (error as Error); 
+    console.error("Při volání API došlo k chybě:", (error as Error).message);
+
+    throw error as Error;
   }
-}
+};

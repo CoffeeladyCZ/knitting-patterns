@@ -16,7 +16,7 @@ export default defineConfig([
       tseslint.configs.recommended,
       reactHooks.configs["recommended-latest"],
       reactRefresh.configs.vite,
-      pluginQuery.configs['flat/recommended'],
+      pluginQuery.configs["flat/recommended"],
     ],
     languageOptions: {
       ecmaVersion: 2020,

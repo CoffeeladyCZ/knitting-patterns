@@ -5,5 +5,5 @@ export const API_ROUTES = {
 
 export const QUERY_KEYS = {
   PATTERNS: "patterns",
-  LIST: "list"
+  LIST: "list",
 };

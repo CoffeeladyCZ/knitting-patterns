@@ -78,8 +78,8 @@ export interface CreateIssueResult {
       number: number;
       title: string;
       url: string;
-    }
-  }
+    };
+  };
 }
 
 export interface CreateIssueVariables {

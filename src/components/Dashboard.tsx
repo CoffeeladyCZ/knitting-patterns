@@ -8,13 +8,19 @@ interface DashboardProps {
 
 export const Dashboard = ({ onRepositoryClick }: DashboardProps) => {
   // const { data, isLoading, isError, error } = useRepositoryId("coffeeladyCZ", "todo-app");
-  const { data: repositories, isLoading: isLoadingRepositories, isError: isErrorRepositories, error: errorRepositories } = useViewerRepositories(10);
+  const {
+    data: repositories,
+    isLoading: isLoadingRepositories,
+    isError: isErrorRepositories,
+    error: errorRepositories,
+  } = useViewerRepositories(10);
 
   if (isLoadingRepositories) return <div>Loading...</div>;
 
   if (isErrorRepositories) return <div>Error: {errorRepositories.message}</div>;
 
-  const findedRepositories = repositories?.data?.viewer.repositories.nodes || [];
+  const findedRepositories =
+    repositories?.data?.viewer.repositories.nodes || [];
 
   return (
     <>
@@ -23,12 +29,12 @@ export const Dashboard = ({ onRepositoryClick }: DashboardProps) => {
       </div>
       <div className="flex flex-wrap gap-4 p-4">
         {findedRepositories?.map((repo) => (
-          <Card 
-            key={repo.id} 
-            repository={repo} 
+          <Card
+            key={repo.id}
+            repository={repo}
             onClick={() => {
               // Extrahujeme owner z URL nebo použijeme viewer jako owner
-              const urlParts = repo.url.split('/');
+              const urlParts = repo.url.split("/");
               const owner = urlParts[urlParts.length - 2]; // předposlední část URL
               onRepositoryClick(owner, repo.name);
             }}
@@ -36,6 +42,5 @@ export const Dashboard = ({ onRepositoryClick }: DashboardProps) => {
         ))}
       </div>
     </>
-  )
+  );
 };
-

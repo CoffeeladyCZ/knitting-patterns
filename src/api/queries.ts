@@ -1,33 +1,34 @@
-export const getGithubFetcher = async<TData, TVariables = unknown>(
-  query: string, 
-  variables: TVariables = {} as TVariables
+export const getGithubFetcher = async <TData, TVariables = unknown>(
+  query: string,
+  variables: TVariables = {} as TVariables,
 ): Promise<TData> => {
-  const url = `${import.meta.env.VITE_GITHUB_URL}`
+  const url = `${import.meta.env.VITE_GITHUB_URL}`;
 
   try {
     const response = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
       },
       body: JSON.stringify({
         query,
         variables,
-      })
+      }),
     });
     if (!response.ok) {
       const errorBody = await response.text();
-      throw new Error(`HTTP chyba! Stav: ${response.status}. Zpráva: ${errorBody.substring(0, 100)}...`);
+      throw new Error(
+        `HTTP chyba! Stav: ${response.status}. Zpráva: ${errorBody.substring(0, 100)}...`,
+      );
     }
 
     const data = await response.json();
 
     return data;
-
   } catch (error) {
-    console.error('Při volání API došlo k chybě:', (error as Error).message);
-    
-    throw (error as Error); 
+    console.error("Při volání API došlo k chybě:", (error as Error).message);
+
+    throw error as Error;
   }
-}
+};

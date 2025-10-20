@@ -13,6 +13,6 @@ mutation CreateIssue($repoId: ID!, $title: String!, $body: String) {
   }
 }`;
 
-//proč gql? 
-// V tomto případě je jediným účelem této funkce fungovat jako identifikátor 
+//proč gql?
+// V tomto případě je jediným účelem této funkce fungovat jako identifikátor
 // pro Váš kód, který editorům a nástrojům říká: "Obsah uvnitř je jazyk GraphQL."
