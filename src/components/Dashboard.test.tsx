@@ -14,31 +14,32 @@ import { useViewerRepositories } from "../api/hooks";
 
 // Helper function to create mock query results
 const createMockQueryResult = <T,>(
-  overrides: Partial<UseQueryResult<T, Error>> = {}
-): UseQueryResult<T, Error> => ({
-  data: undefined,
-  error: null,
-  isError: false,
-  isLoading: false,
-  isSuccess: false,
-  isPending: false,
-  isFetching: false,
-  isRefetching: false,
-  isStale: false,
-  dataUpdatedAt: 0,
-  errorUpdatedAt: 0,
-  failureCount: 0,
-  failureReason: null,
-  fetchStatus: 'idle' as const,
-  isFetched: false,
-  isFetchedAfterMount: false,
-  isInitialLoading: false,
-  isLoadingError: false,
-  isRefetchError: false,
-  refetch: vi.fn(),
-  status: 'pending' as const,
-  ...overrides,
-} as UseQueryResult<T, Error>);
+  overrides: Partial<UseQueryResult<T, Error>> = {},
+): UseQueryResult<T, Error> =>
+  ({
+    data: undefined,
+    error: null,
+    isError: false,
+    isLoading: false,
+    isSuccess: false,
+    isPending: false,
+    isFetching: false,
+    isRefetching: false,
+    isStale: false,
+    dataUpdatedAt: 0,
+    errorUpdatedAt: 0,
+    failureCount: 0,
+    failureReason: null,
+    fetchStatus: "idle" as const,
+    isFetched: false,
+    isFetchedAfterMount: false,
+    isInitialLoading: false,
+    isLoadingError: false,
+    isRefetchError: false,
+    refetch: vi.fn(),
+    status: "pending" as const,
+    ...overrides,
+  }) as UseQueryResult<T, Error>;
 
 describe("Dashboard Component", () => {
   beforeEach(() => {
@@ -53,8 +54,8 @@ describe("Dashboard Component", () => {
       createMockQueryResult<RepositoriesData>({
         isLoading: true,
         isPending: true,
-        status: 'pending',
-      })
+        status: "pending",
+      }),
     );
 
     render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
@@ -93,8 +94,8 @@ describe("Dashboard Component", () => {
         data: mockData,
         isLoading: false,
         isSuccess: true,
-        status: 'success',
-      })
+        status: "success",
+      }),
     );
 
     render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
@@ -115,8 +116,8 @@ describe("Dashboard Component", () => {
         isLoading: false,
         isError: true,
         error: new Error("API Error"),
-        status: 'error',
-      })
+        status: "error",
+      }),
     );
 
     render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
