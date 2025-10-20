@@ -30,5 +30,8 @@ jobs:
       - name: Typecheck code
         run: yarn typecheck
 
+      - name: Run tests
+        run: yarn test
+
       - name: Build
         run: yarn build
