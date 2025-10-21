@@ -14,6 +14,7 @@ export const Card = ({ repository, onClick }: CardProps) => {
       <p className="text-lg font-bold">{repository.name}</p>
       <p className="text-sm text-gray-500">{repository.description}</p>
       <p className="text-sm text-gray-500">{repository.url}</p>
+      <p className="text-sm text-gray-500">{repository.url}</p>
     </div>
   );
 };
