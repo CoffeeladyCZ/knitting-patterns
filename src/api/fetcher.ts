@@ -23,9 +23,16 @@ export const getGithubFetcher = async <TData, TVariables = unknown>(
       );
     }
 
-    const data = await response.json();
+    const result = await response.json();
 
-    return data;
+    if (result.errors && result.errors.length > 0) {
+      const errorMessages = result.errors
+        .map((error: { message: string }) => error.message)
+        .join(", ");
+      throw new Error(`GraphQL chyby: ${errorMessages}`);
+    }
+
+    return result.data;
   } catch (error) {
     console.error("Při volání API došlo k chybě:", (error as Error).message);
 

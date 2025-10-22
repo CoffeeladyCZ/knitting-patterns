@@ -2,14 +2,13 @@
 import { useViewerRepositories } from "../api/hooks";
 import { Card } from "./Card";
 
-interface DashboardProps {
+interface Props {
   onRepositoryClick: (owner: string, name: string) => void;
 }
 
-export const Dashboard = ({ onRepositoryClick }: DashboardProps) => {
-  // const { data, isLoading, isError, error } = useRepositoryId("coffeeladyCZ", "todo-app");
+export const Dashboard = ({ onRepositoryClick }: Props) => {
   const {
-    data: repositories,
+    data,
     isLoading: isLoadingRepositories,
     isError: isErrorRepositories,
     error: errorRepositories,
@@ -19,8 +18,7 @@ export const Dashboard = ({ onRepositoryClick }: DashboardProps) => {
 
   if (isErrorRepositories) return <div>Error: {errorRepositories.message}</div>;
 
-  const findedRepositories =
-    repositories?.data?.viewer.repositories.nodes || [];
+  const findedRepositories = data?.viewer?.repositories?.nodes || [];
 
   return (
     <>
@@ -30,13 +28,12 @@ export const Dashboard = ({ onRepositoryClick }: DashboardProps) => {
       <div className="flex flex-wrap gap-4 p-4">
         {findedRepositories?.map((repo) => (
           <Card
-            key={repo.id}
+            key={repo?.id}
             repository={repo}
             onClick={() => {
-              // Extrahujeme owner z URL nebo použijeme viewer jako owner
-              const urlParts = repo.url.split("/");
-              const owner = urlParts[urlParts.length - 2]; // předposlední část URL
-              onRepositoryClick(owner, repo.name);
+              const urlParts = repo?.url?.split("/") || [];
+              const owner = urlParts[urlParts.length - 2] || ""; // předposlední část URL
+              onRepositoryClick(owner, repo?.name || "");
             }}
           />
         ))}
