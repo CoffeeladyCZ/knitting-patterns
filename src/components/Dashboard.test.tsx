@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "../test/test-utils";
 import { Dashboard } from "./Dashboard";
-import { type RepositoriesData } from "../api/types";
+import type { GetViewerRepositoriesQuery } from "../api/gql/generated/types";
 import type { UseQueryResult } from "@tanstack/react-query";
 
 // Mock the API hook
@@ -51,7 +51,7 @@ describe("Dashboard Component", () => {
 
     // Mock loading state
     vi.mocked(useViewerRepositories).mockReturnValue(
-      createMockQueryResult<RepositoriesData>({
+      createMockQueryResult<GetViewerRepositoriesQuery>({
         isLoading: true,
         isPending: true,
         status: "pending",
@@ -60,37 +60,33 @@ describe("Dashboard Component", () => {
 
     render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
 
-    // Check if loading text is displayed
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
   it("renders title when loaded", async () => {
     const mockOnRepositoryClick = vi.fn();
 
-    // Mock successful data
-    const mockData: RepositoriesData = {
-      data: {
-        viewer: {
-          repositories: {
-            nodes: [
-              {
-                id: "1",
-                name: "test-repo",
-                description: "Test repository",
-                url: "https://github.com/test/test-repo",
-                isPrivate: false,
-                owner: {
-                  avatarUrl: "https://github.com/test.png",
-                },
+    const mockData: GetViewerRepositoriesQuery = {
+      viewer: {
+        repositories: {
+          nodes: [
+            {
+              id: "1",
+              name: "test-repo",
+              description: "Test repository",
+              url: "https://github.com/test/test-repo",
+              isPrivate: false,
+              owner: {
+                avatarUrl: "https://github.com/test.png",
               },
-            ],
-          },
+            },
+          ],
         },
       },
     };
 
     vi.mocked(useViewerRepositories).mockReturnValue(
-      createMockQueryResult<RepositoriesData>({
+      createMockQueryResult<GetViewerRepositoriesQuery>({
         data: mockData,
         isLoading: false,
         isSuccess: true,
@@ -100,10 +96,8 @@ describe("Dashboard Component", () => {
 
     render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
 
-    // Check if title is displayed
     expect(screen.getByText("Knitting Patterns")).toBeInTheDocument();
 
-    // Check if repository is displayed
     expect(screen.getByText("test-repo")).toBeInTheDocument();
   });
 
@@ -112,7 +106,7 @@ describe("Dashboard Component", () => {
 
     // Mock error state
     vi.mocked(useViewerRepositories).mockReturnValue(
-      createMockQueryResult<RepositoriesData>({
+      createMockQueryResult<GetViewerRepositoriesQuery>({
         isLoading: false,
         isError: true,
         error: new Error("API Error"),

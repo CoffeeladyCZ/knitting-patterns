@@ -1,4 +1,8 @@
-import { type RepositoryNode } from "../api/types";
+import type { GetViewerRepositoriesQuery } from "../api/gql/generated/types";
+
+type RepositoryNode = NonNullable<
+  GetViewerRepositoriesQuery["viewer"]["repositories"]["nodes"]
+>[0];
 
 interface CardProps {
   repository: RepositoryNode;
@@ -6,6 +10,8 @@ interface CardProps {
 }
 
 export const Card = ({ repository, onClick }: CardProps) => {
+  if (!repository) return null;
+
   return (
     <div
       className="border border-gray-300 rounded-md p-4 flex flex-col items-center w-fit max-w-[320px] cursor-pointer hover:shadow-lg transition-shadow"
