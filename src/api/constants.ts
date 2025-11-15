@@ -1,5 +1,6 @@
 export const QUERY_KEYS = {
   VIEWER_REPOSITORIES: "viewer-repositories",
+  USER_REPOSITORIES: "user-repositories",
   ISSUES: "issues",
 };
 

@@ -22,6 +22,29 @@ export const GET_VIEWER_REPOSITORIES = gql`
   }
 `;
 
+export const GET_USER_REPOSITORIES = gql`
+  query GetUserRepositories($login: String!, $first: Int!) {
+    user(login: $login) {
+      login
+      repositories(
+        first: $first
+        orderBy: { field: CREATED_AT, direction: DESC }
+      ) {
+        nodes {
+          id
+          name
+          owner {
+            avatarUrl
+          }
+          description
+          url
+          isPrivate
+        }
+      }
+    }
+  }
+`;
+
 export const GET_REPOSITORY_ISSUES = gql`
   query GetRepositoryIssues($owner: String!, $name: String!, $first: Int!) {
     repository(owner: $owner, name: $name) {

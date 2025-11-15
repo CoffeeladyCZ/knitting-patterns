@@ -2,8 +2,10 @@ import { Dashboard } from "./components/Dashboard";
 import { RepositoryDetail } from "./components/RepositoryDetail";
 import { ErrorBoundary } from "react-error-boundary";
 import { useState } from "react";
+import { Theme } from "@radix-ui/themes";
 
 import "./App.css";
+import "@radix-ui/themes/styles.css";
 import * as Sentry from "@sentry/react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
@@ -36,21 +38,24 @@ function App() {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ErrorBoundary fallbackRender={() => null} onError={logError}>
-        {currentView === "dashboard" ? (
-          <Dashboard onRepositoryClick={navigateToRepository} />
-        ) : (
-          repositoryState && (
-            <RepositoryDetail
-              owner={repositoryState.owner}
-              name={repositoryState.name}
-              onBack={navigateToDashboard}
-            />
-          )
-        )}
-      </ErrorBoundary>
-    </QueryClientProvider>
+    <Theme>
+      <QueryClientProvider client={queryClient}>
+        <ErrorBoundary fallbackRender={() => null} onError={logError}>
+          {currentView === "dashboard" ? (
+            <Dashboard onRepositoryClick={navigateToRepository} />
+          ) : (
+            repositoryState && (
+              <RepositoryDetail
+                owner={repositoryState.owner}
+                name={repositoryState.name}
+                onBack={navigateToDashboard}
+              />
+            )
+          )}
+        </ErrorBoundary>
+      </QueryClientProvider>
+
+    </Theme>
   );
 }
 

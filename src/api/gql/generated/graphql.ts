@@ -35731,6 +35731,17 @@ export type GetViewerRepositoriesQuery = { __typename?: 'Query', viewer: { __typ
           | { __typename?: 'User', avatarUrl: any }
          } | null> | null } } };
 
+export type GetUserRepositoriesQueryVariables = Exact<{
+  login: Scalars['String']['input'];
+  first: Scalars['Int']['input'];
+}>;
+
+
+export type GetUserRepositoriesQuery = { __typename?: 'Query', user?: { __typename?: 'User', login: string, repositories: { __typename?: 'RepositoryConnection', nodes?: Array<{ __typename?: 'Repository', id: string, name: string, description?: string | null, url: any, isPrivate: boolean, owner:
+          | { __typename?: 'Organization', avatarUrl: any }
+          | { __typename?: 'User', avatarUrl: any }
+         } | null> | null } } | null };
+
 export type GetRepositoryIssuesQueryVariables = Exact<{
   owner: Scalars['String']['input'];
   name: Scalars['String']['input'];
@@ -35798,6 +35809,25 @@ export const GetViewerRepositoriesDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<GetViewerRepositoriesQuery, GetViewerRepositoriesQueryVariables>;
+export const GetUserRepositoriesDocument = new TypedDocumentString(`
+    query GetUserRepositories($login: String!, $first: Int!) {
+  user(login: $login) {
+    login
+    repositories(first: $first, orderBy: {field: CREATED_AT, direction: DESC}) {
+      nodes {
+        id
+        name
+        owner {
+          avatarUrl
+        }
+        description
+        url
+        isPrivate
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetUserRepositoriesQuery, GetUserRepositoriesQueryVariables>;
 export const GetRepositoryIssuesDocument = new TypedDocumentString(`
     query GetRepositoryIssues($owner: String!, $name: String!, $first: Int!) {
   repository(owner: $owner, name: $name) {
