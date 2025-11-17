@@ -1,13 +1,11 @@
 // import { useGetPatterns } from "../api/ravelry/hooks";
+import { useNavigate } from "react-router";
 import { useViewerRepositories } from "../api/hooks";
 import { Card } from "./Card";
 import { GitHubIcon } from "./GitHubIcon";
 
-interface Props {
-  onRepositoryClick: (owner: string, name: string) => void;
-}
-
-export const Dashboard = ({ onRepositoryClick }: Props) => {
+export const Dashboard = () => {
+  const navigate = useNavigate();
   const {
     data,
     isLoading: isLoadingRepositories,
@@ -37,7 +35,7 @@ export const Dashboard = ({ onRepositoryClick }: Props) => {
             onClick={() => {
               const urlParts = repo?.url?.split("/") || [];
               const owner = urlParts[urlParts.length - 2] || ""; // předposlední část URL
-              onRepositoryClick(owner, repo?.name || "");
+              navigate(`/repository/${owner}/${repo?.name || ""}`);
             }}
           />
         ))}

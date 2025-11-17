@@ -1,19 +1,17 @@
 import { useRepositoryIssues } from "../api/hooks";
 import IssueDialog from "./IssueDialog";
 import { IssueCard } from "./IssueCard";
+import { useNavigate, useParams } from "react-router";
 
-interface Props {
-  owner: string;
-  name: string;
-  onBack: () => void;
-}
-
-export const RepositoryDetail = ({ owner, name, onBack }: Props) => {
+export const RepositoryDetail = () => {
+  const { owner, name } = useParams<{ owner: string; name: string }>();
   const { data, isLoading, isError, error } = useRepositoryIssues(
-    owner,
-    name,
+    owner!,
+    name!,
     50,
   );
+
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -30,7 +28,7 @@ export const RepositoryDetail = ({ owner, name, onBack }: Props) => {
           Chyba při načítání issues: {error?.message}
         </div>
         <button
-          onClick={onBack}
+          onClick={() => navigate("/")}
           className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
         >
           Zpět na Dashboard
@@ -45,13 +43,6 @@ export const RepositoryDetail = ({ owner, name, onBack }: Props) => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="mb-6">
-        <button
-          onClick={onBack}
-          className="mb-4 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-        >
-          ← Zpět na Dashboard
-        </button>
-
         <div className="flex items-center space-x-4 mb-4">
           {repository?.owner?.avatarUrl && (
             <img
