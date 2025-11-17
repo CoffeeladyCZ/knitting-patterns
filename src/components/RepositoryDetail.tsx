@@ -61,7 +61,7 @@ export const RepositoryDetail = ({ owner, name, onBack }: Props) => {
             />
           )}
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-gray-900 animate-heart-pulse">
               {repository?.name}
             </h1>
             <p className="text-gray-600">

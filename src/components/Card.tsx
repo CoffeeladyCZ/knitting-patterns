@@ -14,7 +14,7 @@ export const Card = ({ repository, onClick }: CardProps) => {
 
   return (
     <div
-      className="border border-gray-300 rounded-md p-4 flex flex-col items-center w-fit max-w-[320px] cursor-pointer hover:shadow-lg transition-shadow"
+      className="border border-gray-300 rounded-md p-4 flex flex-col items-center w-fit max-w-[320px] cursor-pointer hover:shadow-lg transition-shadow hover:animate-wingle"
       onClick={onClick}
     >
       <p className="text-lg font-bold">{repository.name}</p>

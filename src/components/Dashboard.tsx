@@ -1,6 +1,7 @@
 // import { useGetPatterns } from "../api/ravelry/hooks";
 import { useViewerRepositories } from "../api/hooks";
 import { Card } from "./Card";
+import { GitHubIcon } from "./GitHubIcon";
 
 interface Props {
   onRepositoryClick: (owner: string, name: string) => void;
@@ -22,8 +23,11 @@ export const Dashboard = ({ onRepositoryClick }: Props) => {
 
   return (
     <>
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Knitting Patterns</h1>
+      <div className="flex items-center">
+        <span className="mr-2">
+          <GitHubIcon width={24} height={24} />
+        </span>
+        <h1 className="text-2xl font-bold animate-fade-in">GitHub repositories</h1>
       </div>
       <div className="flex flex-wrap gap-4 p-4">
         {findedRepositories?.map((repo) => (
