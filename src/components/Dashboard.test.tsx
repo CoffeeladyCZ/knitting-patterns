@@ -9,6 +9,10 @@ vi.mock("../api/hooks", () => ({
   useViewerRepositories: vi.fn(),
 }));
 
+vi.mock("react-router", () => ({
+  useNavigate: vi.fn(),
+}));
+
 // Import the mocked hook
 import { useViewerRepositories } from "../api/hooks";
 
@@ -47,8 +51,6 @@ describe("Dashboard Component", () => {
   });
 
   it("renders loading state initially", () => {
-    const mockOnRepositoryClick = vi.fn();
-
     // Mock loading state
     vi.mocked(useViewerRepositories).mockReturnValue(
       createMockQueryResult<GetViewerRepositoriesQuery>({
@@ -58,14 +60,12 @@ describe("Dashboard Component", () => {
       }),
     );
 
-    render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
+    render(<Dashboard />);
 
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
   it("renders title when loaded", async () => {
-    const mockOnRepositoryClick = vi.fn();
-
     const mockData: GetViewerRepositoriesQuery = {
       viewer: {
         repositories: {
@@ -94,16 +94,14 @@ describe("Dashboard Component", () => {
       }),
     );
 
-    render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
+    render(<Dashboard />);
 
-    expect(screen.getByText("Knitting Patterns")).toBeInTheDocument();
+    expect(screen.getByText("GitHub repositories")).toBeInTheDocument();
 
     expect(screen.getByText("test-repo")).toBeInTheDocument();
   });
 
   it("renders error state when API fails", () => {
-    const mockOnRepositoryClick = vi.fn();
-
     // Mock error state
     vi.mocked(useViewerRepositories).mockReturnValue(
       createMockQueryResult<GetViewerRepositoriesQuery>({
@@ -114,7 +112,7 @@ describe("Dashboard Component", () => {
       }),
     );
 
-    render(<Dashboard onRepositoryClick={mockOnRepositoryClick} />);
+    render(<Dashboard />);
 
     // Check if error message is displayed
     expect(screen.getByText("Error: API Error")).toBeInTheDocument();
