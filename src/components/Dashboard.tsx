@@ -25,7 +25,9 @@ export const Dashboard = () => {
         <span className="mr-2">
           <GitHubIcon width={24} height={24} />
         </span>
-        <h1 className="text-2xl font-bold animate-fade-in">GitHub repositories</h1>
+        <h1 className="text-2xl font-bold animate-fade-in">
+          GitHub repositories
+        </h1>
       </div>
       <div className="flex flex-wrap gap-4 p-4">
         {findedRepositories?.map((repo) => (

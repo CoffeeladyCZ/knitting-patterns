@@ -10,7 +10,6 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 function App() {
-
   const logError = (error: Error) => {
     Sentry.captureException(error);
   };
@@ -21,7 +20,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/repository/:owner/:name" element={<RepositoryDetail />} />
+            <Route
+              path="/repository/:owner/:name"
+              element={<RepositoryDetail />}
+            />
           </Routes>
         </BrowserRouter>
       </ErrorBoundary>
