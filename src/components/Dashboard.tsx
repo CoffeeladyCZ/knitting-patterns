@@ -35,10 +35,11 @@ export const Dashboard = () => {
     const owner = urlParts[urlParts.length - 2] || ""; // předposlední část URL
     navigate(`/repository/${owner}/${repo?.name || ""}`);
 
-    ReactGA.send({
-      hitType: "repository",
-      page: `/repository/${owner}/${repo?.name}`,
-      title: repo?.name || "",
+    ReactGA.event({
+      category: "Repository",
+      action: "Open detail",
+      label: repo?.name || "unknown",
+      value: Number(repo?.id) || 0,
     });
   };
 

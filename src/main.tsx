@@ -6,7 +6,6 @@ import "../sentry.js";
 import ReactGA from "react-ga4";
 
 ReactGA.initialize(import.meta.env.VITE_GA4_MEASURENT_ID);
-console.log(import.meta.env.VITE_GA4_MEASURENT_ID);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
