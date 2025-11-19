@@ -3,6 +3,9 @@ import { useNavigate } from "react-router";
 import { useViewerRepositories } from "../api/hooks";
 import { Card } from "./Card";
 import { GitHubIcon } from "./GitHubIcon";
+import { useEffect } from "react";
+import ReactGA from "react-ga4";
+import type { RepositoryNode } from "../api/types";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,11 +16,31 @@ export const Dashboard = () => {
     error: errorRepositories,
   } = useViewerRepositories(10);
 
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "dashboard",
+      page: "/",
+      title: "Dashboard",
+    });
+  });
+
   if (isLoadingRepositories) return <div>Loading...</div>;
 
   if (isErrorRepositories) return <div>Error: {errorRepositories.message}</div>;
 
   const findedRepositories = data?.viewer?.repositories?.nodes || [];
+
+  const handleRepositoryClick = (repo: RepositoryNode) => {
+    const urlParts = repo?.url?.split("/") || [];
+    const owner = urlParts[urlParts.length - 2] || ""; // předposlední část URL
+    navigate(`/repository/${owner}/${repo?.name || ""}`);
+
+    ReactGA.send({
+      hitType: "repository",
+      page: `/repository/${owner}/${repo?.name}`,
+      title: repo?.name || "",
+    });
+  };
 
   return (
     <>
@@ -34,11 +57,7 @@ export const Dashboard = () => {
           <Card
             key={repo?.id}
             repository={repo}
-            onClick={() => {
-              const urlParts = repo?.url?.split("/") || [];
-              const owner = urlParts[urlParts.length - 2] || ""; // předposlední část URL
-              navigate(`/repository/${owner}/${repo?.name || ""}`);
-            }}
+            onClick={() => handleRepositoryClick(repo)}
           />
         ))}
       </div>
