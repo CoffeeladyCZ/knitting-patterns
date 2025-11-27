@@ -1,0 +1,56 @@
+import { cn } from "../../utils/utils";
+
+type CardVariant = "full" | "content";
+
+const cardVariantClasses: Record<CardVariant, string> = {
+  full: "w-full",
+  content: "max-w-sm w-full mx-auto",
+};
+
+function CardRoot({
+  className,
+  variant = "content",
+  ...props
+}: React.ComponentProps<"div"> & { variant?: CardVariant }) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "flex flex-col items-center border border-gray-300 rounded-md p-4",
+        cardVariantClasses[variant],
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function CardHeader({className, ...props}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-header"
+      className={cn("cursor-pointer hover:shadow-lg transition-shadow hover:animate-wingle", className)}
+     {...props}
+    />
+  );
+}
+
+function CardTitle({className, ...props}: React.ComponentProps<"p">) {
+  return (
+    <div data-slot="card-title" className={cn("text-lg font-bold", className)} {...props} />
+  );
+}
+
+function CardContent({className, ...props}: React.ComponentProps<"p">) {
+  return (
+    <div data-slot="card-content" className={cn("text-sm text-gray-500", className)} {...props} />
+  );
+}
+
+
+export const Card = Object.assign(CardRoot, {
+  Header: Object.assign(CardHeader, {
+    Title: CardTitle,
+  }),
+  Content: CardContent,
+});

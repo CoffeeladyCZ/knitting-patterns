@@ -7,6 +7,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { issueSchema } from "../schema/issueSchema";
 import { useCreateIssueMutation } from "../api/hooks";
+import { Button } from "./component-library/Button";
 
 interface IssueDialogProps {
   repoId?: string;
@@ -53,9 +54,14 @@ const IssueDialog = ({ repoId }: IssueDialogProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+        <Button
+          variant="primary"
+          size="sm"
+          disabled={!repoId}
+          onClick={() => handleSubmitIssue()}
+        >
           Add issue
-        </button>
+        </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-overlayShow" />
