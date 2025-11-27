@@ -36,7 +36,6 @@ body {
   --color-btn-accent: var(color-accent-500);
   --color-btn-accent-hover: var(color-accent-100);
 
-
   @keyframes fade-in {
     0% {
       opacity: 0;

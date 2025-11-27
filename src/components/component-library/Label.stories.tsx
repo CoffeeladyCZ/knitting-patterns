@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { TextField } from "../component-library/TextField"
-import { Label } from "./Label"
+import type { Meta, StoryObj } from "@storybook/react";
+import { TextField } from "../component-library/TextField";
+import { Label } from "./Label";
 
 const meta = {
   title: "Label",
@@ -8,7 +8,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: "A label component built with Radix UI, used to label form controls.",
+        component:
+          "A label component built with Radix UI, used to label form controls.",
       },
     },
   },
@@ -18,24 +19,20 @@ const meta = {
       control: "text",
     },
   },
-} satisfies Meta<typeof Label>
+} satisfies Meta<typeof Label>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { children: "Email" },
-}
+};
 
 export const WithInput: Story = {
   render: () => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
       <Label htmlFor="input">Name</Label>
-      <TextField
-        type="text"
-        id="input"
-          placeholder="Enter your name"
-        />
+      <TextField type="text" id="input" placeholder="Enter your name" />
     </div>
   ),
-}
+};

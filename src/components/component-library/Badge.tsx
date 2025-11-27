@@ -26,11 +26,19 @@ const badgeVariants = cva("", {
   },
 });
 
-const Badge = ({ variant, size, ...props }: { 
+const Badge = ({
+  variant,
+  size,
+  ...props
+}: {
   variant?: BadgeVariantKey;
   size?: BadgeSizeKey;
 } & React.ComponentProps<"div">) => {
-  return <div className={badgeVariants({ variant, size })} {...props}>Badge</div>;
+  return (
+    <div className={badgeVariants({ variant, size })} {...props}>
+      Badge
+    </div>
+  );
 };
 
 const variantOptions = Object.keys(BadgeVariants.variant);

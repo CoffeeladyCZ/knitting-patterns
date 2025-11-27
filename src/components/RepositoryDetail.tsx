@@ -28,10 +28,7 @@ export const RepositoryDetail = () => {
         <div className="text-red-600 mb-4">
           Chyba při načítání issues: {error?.message}
         </div>
-        <Button
-          variant="primary"
-          onClick={() => navigate("/")}
-        >
+        <Button variant="primary" onClick={() => navigate("/")}>
           Zpět na Dashboard
         </Button>
       </div>

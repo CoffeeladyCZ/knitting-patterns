@@ -1,6 +1,10 @@
 import { cn } from "../../utils/utils";
 
-export const TextField = ({ className, type, ...props }: React.ComponentProps<"input">) => {
+export const TextField = ({
+  className,
+  type,
+  ...props
+}: React.ComponentProps<"input">) => {
   return (
     <input
       type={type}
@@ -13,5 +17,5 @@ export const TextField = ({ className, type, ...props }: React.ComponentProps<"i
       )}
       {...props}
     />
-  )
-}
+  );
+};

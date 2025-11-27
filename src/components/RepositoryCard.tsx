@@ -20,7 +20,9 @@ export const RepositoryCard = ({ repository, onClick }: Props) => {
       onClick={onClick}
     >
       <Card.Header>
-        <Card.Header.Title className="text-accent-50">{repository.name}</Card.Header.Title>
+        <Card.Header.Title className="text-accent-50">
+          {repository.name}
+        </Card.Header.Title>
       </Card.Header>
       <Card.Content>
         <p className="text-surface pb-2">{repository.description}</p>

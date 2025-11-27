@@ -50,9 +50,7 @@ export const IssueCard = ({ issue }: IssueCardProps) => {
                 alt={issue.author.login}
                 className="w-5 h-5 rounded-full"
               />
-              <span className="text-sm text-text">
-                {issue.author.login}
-              </span>
+              <span className="text-sm text-text">{issue.author.login}</span>
             </div>
           )}
         </div>
@@ -69,10 +67,7 @@ export const IssueCard = ({ issue }: IssueCardProps) => {
               (label): label is NonNullable<typeof label> => label !== null,
             )
             .map((label) => (
-              <Badge
-                key={label.id}
-                variant="outline"
-              >
+              <Badge key={label.id} variant="outline">
                 {label.name}
               </Badge>
             ))}

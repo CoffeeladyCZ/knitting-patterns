@@ -1,6 +1,6 @@
-import type { ComponentType, SVGProps } from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "../../utils/utils"
+import type { ComponentType, SVGProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../utils/utils";
 
 const iconVariantsConfig = {
   size: {
@@ -10,26 +10,31 @@ const iconVariantsConfig = {
     xl: "size-6",
     "2xl": "size-8",
   },
-}
+};
 
 export const iconVariants = cva("", {
   variants: iconVariantsConfig,
   defaultVariants: {
     size: "md",
   },
-})
+});
 
-type IconVariants = VariantProps<typeof iconVariants>
+type IconVariants = VariantProps<typeof iconVariants>;
 
 export type IconProps = IconVariants & {
-  as: ComponentType<SVGProps<SVGSVGElement>>
-} & React.HTMLAttributes<SVGSVGElement>
+  as: ComponentType<SVGProps<SVGSVGElement>>;
+} & React.HTMLAttributes<SVGSVGElement>;
 
-export const Icon = ({ as: IconComponent, size, className, ...props }: IconProps) => {
+export const Icon = ({
+  as: IconComponent,
+  size,
+  className,
+  ...props
+}: IconProps) => {
   return (
     <IconComponent
       className={cn("shrink-0", iconVariants({ size }), className)}
       {...props}
     />
-  )
-}
+  );
+};

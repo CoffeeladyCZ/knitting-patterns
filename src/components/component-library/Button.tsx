@@ -20,7 +20,7 @@ const ButtonVariants = {
     lg: "text-lg h-12 px-8",
     icon: "size-10",
   },
-}
+};
 
 const buttonVariants = cva(
   [
@@ -36,7 +36,7 @@ const buttonVariants = cva(
       variant: "primary",
       size: "md",
     },
-  }
+  },
 );
 
 const Button = ({
@@ -55,10 +55,7 @@ const Button = ({
   return (
     <Comp
       data-slot="button"
-      className={cn(
-        buttonVariants({ variant, size }),
-        className
-      )}
+      className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     />
   );

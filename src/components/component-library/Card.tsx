@@ -25,28 +25,38 @@ function CardRoot({
   );
 }
 
-function CardHeader({className, ...props}: React.ComponentProps<"div">) {
+function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-header"
-      className={cn("cursor-pointer hover:shadow-lg transition-shadow hover:animate-wingle", className)}
-     {...props}
+      className={cn(
+        "cursor-pointer hover:shadow-lg transition-shadow hover:animate-wingle",
+        className,
+      )}
+      {...props}
     />
   );
 }
 
-function CardTitle({className, ...props}: React.ComponentProps<"p">) {
+function CardTitle({ className, ...props }: React.ComponentProps<"p">) {
   return (
-    <div data-slot="card-title" className={cn("text-lg font-bold", className)} {...props} />
+    <div
+      data-slot="card-title"
+      className={cn("text-lg font-bold", className)}
+      {...props}
+    />
   );
 }
 
-function CardContent({className, ...props}: React.ComponentProps<"p">) {
+function CardContent({ className, ...props }: React.ComponentProps<"p">) {
   return (
-    <div data-slot="card-content" className={cn("text-sm text-gray-500", className)} {...props} />
+    <div
+      data-slot="card-content"
+      className={cn("text-sm text-gray-500", className)}
+      {...props}
+    />
   );
 }
-
 
 export const Card = Object.assign(CardRoot, {
   Header: Object.assign(CardHeader, {
