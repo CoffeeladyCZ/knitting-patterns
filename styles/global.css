@@ -1,6 +1,30 @@
 @import "tailwindcss";
 
+:root {
+  --destructive: #ff0000;
+  --background: #f4efe4;
+  --green: #345102;
+  --blue: #4316bf;
+  --yellow-001: #fff683;
+  --yellow-000: #fefbc8;
+  --text: #260b1f;
+  --surface: #ffffff;
+}
+
+body {
+  background-color: var(--background);
+}
+
 @theme {
+  --color-destructive: var(--destructive);
+  --color-background: var(--background);
+  --color-primary: var(--green);
+  --color-secondary: var(--blue);
+  --color-accent-500: var(--yellow-001);
+  --color-accent-100: var(--yellow-000);
+  --color-text: var(--text);
+  --color-surface: var(--surface);
+
   --animate-fade-in: fade-in 0.5s ease-in-out;
   --animate-wingle: wingle 1s infinite;
 

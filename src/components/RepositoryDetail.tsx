@@ -2,6 +2,7 @@ import { useRepositoryIssues } from "../api/hooks";
 import IssueDialog from "./IssueDialog";
 import { IssueCard } from "./IssueCard";
 import { useNavigate, useParams } from "react-router";
+import { Button } from "./component-library/Button";
 
 export const RepositoryDetail = () => {
   const { owner, name } = useParams<{ owner: string; name: string }>();
@@ -27,12 +28,9 @@ export const RepositoryDetail = () => {
         <div className="text-red-600 mb-4">
           Chyba při načítání issues: {error?.message}
         </div>
-        <button
-          onClick={() => navigate("/")}
-          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-        >
+        <Button variant="primary" onClick={() => navigate("/")}>
           Zpět na Dashboard
-        </button>
+        </Button>
       </div>
     );
   }
@@ -52,7 +50,7 @@ export const RepositoryDetail = () => {
             />
           )}
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 animate-heart-pulse">
+            <h1 className="text-3xl font-bold text-gray-900">
               {repository?.name}
             </h1>
             <p className="text-gray-600">
@@ -66,14 +64,13 @@ export const RepositoryDetail = () => {
 
         <div className="flex space-x-4">
           <IssueDialog repoId={repository?.id} />
-          <a
-            href={repository?.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => window.open(repository?.url, "_blank")}
           >
             Zobrazit na GitHub
-          </a>
+          </Button>
         </div>
       </div>
 

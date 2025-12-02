@@ -1,11 +1,12 @@
 // import { useGetPatterns } from "../api/ravelry/hooks";
 import { useNavigate } from "react-router";
 import { useViewerRepositories } from "../api/hooks";
-import { Card } from "./Card";
+import { RepositoryCard } from "./RepositoryCard";
 import { GitHubIcon } from "./GitHubIcon";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
 import type { RepositoryNode } from "../api/types";
+import { Icon } from "./component-library/Icon";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export const Dashboard = () => {
 
   const handleRepositoryClick = (repo: RepositoryNode) => {
     const urlParts = repo?.url?.split("/") || [];
-    const owner = urlParts[urlParts.length - 2] || ""; // předposlední část URL
+    const owner = urlParts[urlParts.length - 2] || "";
     navigate(`/repository/${owner}/${repo?.name || ""}`);
 
     ReactGA.event({
@@ -45,17 +46,17 @@ export const Dashboard = () => {
 
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center mb-5">
         <span className="mr-2">
-          <GitHubIcon width={24} height={24} />
+          <Icon as={GitHubIcon} size="xl" className="text-primary" />
         </span>
-        <h1 className="text-2xl font-bold animate-fade-in">
+        <h1 className="text-3xl font-semibold text-primary">
           GitHub repositories
         </h1>
       </div>
       <div className="flex flex-wrap gap-4 p-4">
         {findedRepositories?.map((repo) => (
-          <Card
+          <RepositoryCard
             key={repo?.id}
             repository={repo}
             onClick={() => handleRepositoryClick(repo)}
