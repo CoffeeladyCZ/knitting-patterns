@@ -6,6 +6,7 @@ const meta = {
   title: "TextField",
   component: TextField,
   parameters: {
+    layout: "centered",
     docs: {
       description: {
         component: "A basic input component with various states and types.",

@@ -6,6 +6,7 @@ const meta = {
   component: Button,
   title: "Button",
   parameters: {
+    layout: "centered",
     docs: {
       description: {
         component: "A button component that can be used to trigger actions.",

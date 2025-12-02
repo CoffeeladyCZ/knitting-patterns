@@ -1,7 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { Cross2Icon } from "@radix-ui/react-icons";
-
 import { FormProvider, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +8,8 @@ import { useCreateIssueMutation } from "../api/hooks";
 import { Button } from "./component-library/Button";
 import { TextField } from "./component-library/TextField";
 import { Label } from "./component-library/Label";
+import { Icon } from "./component-library/Icon";
+import { XIcon } from "lucide-react";
 
 interface IssueDialogProps {
   repoId?: string;
@@ -103,7 +103,7 @@ const IssueDialog = ({ repoId }: IssueDialogProps) => {
               size="icon"
               aria-label="Close"
             >
-              <Cross2Icon />
+              <Icon as={XIcon} size="sm" />
             </Button>
           </Dialog.Close>
         </Dialog.Content>

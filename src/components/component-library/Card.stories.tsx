@@ -11,6 +11,15 @@ type CardStoryProps = {
 const meta: Meta<CardStoryProps> = {
   title: "Card",
   component: Card as unknown as React.ComponentType<CardStoryProps>,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A card component that can be used to display content in a card format.",
+      },
+    },
+  },
   args: {
     title: "Test Repository",
     description: "This is a test repository",

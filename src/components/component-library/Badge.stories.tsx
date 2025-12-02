@@ -4,6 +4,15 @@ import { Badge, variantOptions, sizeOptions } from "./Badge";
 const meta = {
   component: Badge,
   title: "Badge",
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A badge component that can be used to display status or tags.",
+      },
+    },
+  },
   args: {
     variant: "primary",
     size: "md",

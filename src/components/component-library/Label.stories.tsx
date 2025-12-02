@@ -3,9 +3,10 @@ import { TextField } from "../component-library/TextField";
 import { Label } from "./Label";
 
 const meta = {
-  title: "Label",
   component: Label,
+  title: "Label",
   parameters: {
+    layout: "centered",
     docs: {
       description: {
         component:
