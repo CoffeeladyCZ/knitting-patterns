@@ -88,3 +88,7 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const SizeIcon: Story = {
+  args: { size: "icon", children: "🚀" },
+};

@@ -8,6 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { issueSchema } from "../schema/issueSchema";
 import { useCreateIssueMutation } from "../api/hooks";
 import { Button } from "./component-library/Button";
+import { TextField } from "./component-library/TextField";
+import { Label } from "./component-library/Label";
 
 interface IssueDialogProps {
   repoId?: string;
@@ -74,50 +76,35 @@ const IssueDialog = ({ repoId }: IssueDialogProps) => {
               Add issue to the repository.
             </Dialog.Description>
             <fieldset className="mb-[15px] flex items-center gap-5">
-              <label
-                className="w-[90px] text-left text-[15px] text-violet11"
-                htmlFor="title"
-              >
-                Title
-              </label>
-              <input
-                className="inline-flex h-[35px] w-full flex-1 items-center justify-center rounded px-2.5 text-[15px] leading-none text-violet11 shadow-[0_0_0_1px] shadow-violet7 outline-none focus:shadow-[0_0_0_2px] focus:shadow-violet8"
-                id="title"
-                {...form.register("title")}
-              />
+              <Label htmlFor="title">Title</Label>
+              <TextField id="title" {...form.register("title")} />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">
-              <label
-                className="w-[90px] text-left text-[15px] text-violet11"
-                htmlFor="description"
-              >
-                Description
-              </label>
-              <input
-                className="inline-flex h-[35px] w-full flex-1 items-center justify-center rounded px-2.5 text-[15px] leading-none text-violet11 shadow-[0_0_0_1px] shadow-violet7 outline-none focus:shadow-[0_0_0_2px] focus:shadow-violet8"
-                id="description"
-                {...form.register("description")}
-              />
+              <Label htmlFor="description">Description</Label>
+              <TextField id="description" {...form.register("description")} />
             </fieldset>
           </FormProvider>
           <div className="mt-[25px] flex justify-end">
             <Dialog.Close asChild>
-              <button
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+              <Button
                 onClick={() => handleSubmitIssue()}
+                variant="primary"
+                size="sm"
                 disabled={!repoId}
               >
                 Save changes
-              </button>
+              </Button>
             </Dialog.Close>
           </div>
           <Dialog.Close asChild>
-            <button
-              className="absolute right-2.5 top-2.5 inline-flex size-[25px] appearance-none items-center justify-center rounded-full text-violet11 bg-gray3 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none cursor-pointer"
+            <Button
+              className="absolute right-2.5 top-2.5 inline-flex size-[25px] appearance-none items-center justify-center text-text hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:outline-none"
+              variant="ghost"
+              size="icon"
               aria-label="Close"
             >
               <Cross2Icon />
-            </button>
+            </Button>
           </Dialog.Close>
         </Dialog.Content>
       </Dialog.Portal>
