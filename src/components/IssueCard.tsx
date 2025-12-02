@@ -28,7 +28,10 @@ export const IssueCard = ({ issue }: IssueCardProps) => {
         <h3 className="text-lg font-semibold text-text flex-1 mr-4">
           #{issue.number} {issue.title}
         </h3>
-        <Badge variant={issue.state === "OPEN" ? "primary" : "secondary"}>
+        <Badge
+          variant={issue.state === "OPEN" ? "primary" : "outline"}
+          size="sm"
+        >
           {issue.state}
         </Badge>
       </div>
@@ -67,7 +70,7 @@ export const IssueCard = ({ issue }: IssueCardProps) => {
               (label): label is NonNullable<typeof label> => label !== null,
             )
             .map((label) => (
-              <Badge key={label.id} variant="outline">
+              <Badge key={label.id} variant="outline" size="sm">
                 {label.name}
               </Badge>
             ))}

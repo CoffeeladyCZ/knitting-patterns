@@ -50,7 +50,7 @@ export const RepositoryDetail = () => {
             />
           )}
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 animate-heart-pulse">
+            <h1 className="text-3xl font-bold text-gray-900">
               {repository?.name}
             </h1>
             <p className="text-gray-600">

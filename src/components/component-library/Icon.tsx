@@ -1,4 +1,9 @@
-import type { ComponentType, SVGProps } from "react";
+import type {
+  ComponentType,
+  ForwardRefExoticComponent,
+  SVGProps,
+  RefAttributes,
+} from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/utils";
 
@@ -21,16 +26,17 @@ export const iconVariants = cva("", {
 
 type IconVariants = VariantProps<typeof iconVariants>;
 
+type SvgComponent =
+  | ComponentType<SVGProps<SVGSVGElement>>
+  | ForwardRefExoticComponent<
+      SVGProps<SVGSVGElement> & RefAttributes<SVGSVGElement>
+    >;
+
 export type IconProps = IconVariants & {
-  as: ComponentType<SVGProps<SVGSVGElement>>;
+  as: SvgComponent;
 } & React.HTMLAttributes<SVGSVGElement>;
 
-export const Icon = ({
-  as: IconComponent,
-  size,
-  className,
-  ...props
-}: IconProps) => {
+const Icon = ({ as: IconComponent, size, className, ...props }: IconProps) => {
   return (
     <IconComponent
       className={cn("shrink-0", iconVariants({ size }), className)}
@@ -38,3 +44,7 @@ export const Icon = ({
     />
   );
 };
+
+const sizeOptions = Object.keys(iconVariantsConfig.size);
+
+export { Icon, sizeOptions };

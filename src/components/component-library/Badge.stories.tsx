@@ -7,8 +7,12 @@ const meta = {
   args: {
     variant: "primary",
     size: "md",
+    children: "Badge",
   },
   argTypes: {
+    children: {
+      description: "The content of the badge.",
+    },
     variant: {
       description: "The variant of the badge.",
       control: {
@@ -43,5 +47,11 @@ export const Secondary: Story = {
 export const Accent: Story = {
   args: {
     variant: "accent",
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: "outline",
   },
 };

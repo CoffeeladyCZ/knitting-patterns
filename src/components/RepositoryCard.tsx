@@ -15,12 +15,12 @@ export const RepositoryCard = ({ repository, onClick }: Props) => {
 
   return (
     <Card
-      className="border-secondary bg-secondary gap-2"
+      className="border-secondary bg-secondary/50 hover:bg-secondary/70 gap-2"
       variant="content"
       onClick={onClick}
     >
       <Card.Header>
-        <Card.Header.Title className="text-accent-50">
+        <Card.Header.Title className="text-accent-500">
           {repository.name}
         </Card.Header.Title>
       </Card.Header>

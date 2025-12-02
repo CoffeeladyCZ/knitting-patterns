@@ -46,11 +46,11 @@ export const Dashboard = () => {
 
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center mb-5">
         <span className="mr-2">
-          <Icon as={GitHubIcon} size="lg" />
+          <Icon as={GitHubIcon} size="xl" className="text-primary" />
         </span>
-        <h1 className="text-3xl font-semibold animate-fade-in text-primary">
+        <h1 className="text-3xl font-semibold text-primary">
           GitHub repositories
         </h1>
       </div>

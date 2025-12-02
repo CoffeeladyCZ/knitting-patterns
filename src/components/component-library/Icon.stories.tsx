@@ -1,40 +1,36 @@
-import type { ComponentType, SVGProps } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../utils/utils";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
-const iconVariantsConfig = {
-  size: {
-    sm: "size-3",
-    md: "size-4",
-    lg: "size-5",
-    xl: "size-6",
-    "2xl": "size-8",
-  },
-};
+import { Icon, sizeOptions } from "./Icon";
 
-export const iconVariants = cva("", {
-  variants: iconVariantsConfig,
-  defaultVariants: {
+const meta = {
+  title: "Icon",
+  component: Icon,
+  args: {
+    as: GitHubLogoIcon,
     size: "md",
   },
-});
+  argTypes: {
+    as: {
+      description:
+        "The SVG component to render. This should be a React component that renders an SVG.",
+      control: false,
+    },
+    size: {
+      control: "select",
+      options: sizeOptions,
+    },
+  },
+} as Meta<typeof Icon>;
 
-type IconVariants = VariantProps<typeof iconVariants>;
+export default meta;
 
-export type IconProps = IconVariants & {
-  as: ComponentType<SVGProps<SVGSVGElement>>;
-} & React.HTMLAttributes<SVGSVGElement>;
+type Story = StoryObj<typeof meta>;
 
-export const Icon = ({
-  as: IconComponent,
-  size,
-  className,
-  ...props
-}: IconProps) => {
-  return (
-    <IconComponent
-      className={cn("shrink-0", iconVariants({ size }), className)}
-      {...props}
-    />
-  );
+export const GitHub: Story = {};
+
+export const Discord: Story = {
+  args: {
+    as: DiscordLogoIcon,
+  },
 };

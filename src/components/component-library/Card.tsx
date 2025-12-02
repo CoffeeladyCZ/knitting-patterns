@@ -16,7 +16,7 @@ function CardRoot({
     <div
       data-slot="card"
       className={cn(
-        "flex flex-col items-center border border-gray-300 rounded-md p-4",
+        "flex flex-col items-center border border-gray-300 rounded-md p-4 cursor-pointer",
         cardVariantClasses[variant],
         className,
       )}
@@ -26,16 +26,7 @@ function CardRoot({
 }
 
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-header"
-      className={cn(
-        "cursor-pointer hover:shadow-lg transition-shadow hover:animate-wingle",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <div data-slot="card-header" className={className} {...props} />;
 }
 
 function CardTitle({ className, ...props }: React.ComponentProps<"p">) {
