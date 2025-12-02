@@ -16,6 +16,23 @@ export default defineConfig({
     setupFiles: ["./src/test/setup.ts"],
     projects: [
       {
+        test: {
+          name: "unit",
+          environment: "jsdom",
+          globals: true,
+          setupFiles: ["./src/test/setup.ts"],
+          include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+          exclude: [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/cypress/**",
+            "**/.{idea,git,cache,output,temp}/**",
+            "**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*",
+            "**/*.stories.{js,jsx,mjs,ts,tsx}",
+          ],
+        },
+      },
+      {
         extends: true,
         plugins: [
           // The plugin will run tests for the stories defined in your Storybook config
