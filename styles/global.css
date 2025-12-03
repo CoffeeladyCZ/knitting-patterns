@@ -40,6 +40,10 @@
 
 body {
   background-color: var(--background);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 @theme {
@@ -55,6 +59,9 @@ body {
 
   --animate-fade-in: fade-in 0.5s ease-in-out;
   --animate-wingle: wingle 1s infinite;
+
+  --font-sans: "Inter", sans-serif;
+  --font-borel: "Borel", cursive;
 
   @keyframes fade-in {
     0% {
