@@ -167,4 +167,3 @@ describe("Patterns Dashboard", () => {
     expect(screen.getByText("... powered on Ravelry")).toBeInTheDocument();
   });
 });
-
