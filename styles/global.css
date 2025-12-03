@@ -7,8 +7,35 @@
   --blue: #4316bf;
   --yellow-001: #fff683;
   --yellow-000: #fefbc8;
+  --orange: #ffbbab;
   --text: #260b1f;
   --surface: #ffffff;
+
+  --tan: #f4efe4;
+  --plum-000: #260b1f;
+  --black: #221f20;
+  --transparent: #ddd0;
+  --orange-001: #ff6d4b;
+  --blue-005: #4316bf;
+  --green-004: #345102;
+  --pink-001: #bda7d3;
+  --blue-000: #befbff;
+  --pink-002: #ffcdff;
+  --green-001: #d2ffd1;
+  --blue-001: #00f0ff;
+  --blue-003: #1c687a;
+  --pink-004: #d27fff;
+  --blue-006: #c0f0ff;
+  --blue-004: #006ae5;
+  --plum-002: #4c0000;
+  --yellow-002: #f9c432;
+  --blue-002: #00b6f5;
+  --plum-001: #887d85;
+  --yellow-003: #e28200;
+  --pink-005: #ea116a;
+  --green-002: #afd700;
+  --green-003: #00dd0d;
+  --pink-003: #ff8acd;
 }
 
 body {
@@ -22,6 +49,7 @@ body {
   --color-secondary: var(--blue);
   --color-accent-500: var(--yellow-001);
   --color-accent-100: var(--yellow-000);
+  --color-orange: var(--orange);
   --color-text: var(--text);
   --color-surface: var(--surface);
 

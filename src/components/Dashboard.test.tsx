@@ -51,7 +51,6 @@ describe("Dashboard Component", () => {
   });
 
   it("renders loading state initially", () => {
-    // Mock loading state
     vi.mocked(useViewerRepositories).mockReturnValue(
       createMockQueryResult<GetViewerRepositoriesQuery>({
         isLoading: true,

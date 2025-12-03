@@ -1,4 +1,5 @@
 import { cva } from "class-variance-authority";
+import { cn } from "../../utils/utils";
 
 type BadgeVariantKey = keyof typeof BadgeVariants.variant;
 type BadgeSizeKey = keyof typeof BadgeVariants.size;
@@ -12,6 +13,7 @@ const BadgeVariants = {
     outline: "bg-transparent text-primary border border-primary",
   },
   size: {
+    xs: "text-xs",
     sm: "text-sm",
     md: "text-base",
     lg: "text-lg",
@@ -19,7 +21,7 @@ const BadgeVariants = {
 };
 
 const badgeVariants = cva(
-  ["inline-flex items-center justify-center rounded-md px-2"],
+  ["inline-flex items-center justify-center rounded-md px-3"],
   {
     variants: BadgeVariants,
     defaultVariants: {
@@ -32,12 +34,19 @@ const badgeVariants = cva(
 const Badge = ({
   variant,
   size,
+  className,
   ...props
 }: {
   variant?: BadgeVariantKey;
   size?: BadgeSizeKey;
+  className?: string;
 } & React.ComponentProps<"div">) => {
-  return <div className={badgeVariants({ variant, size })} {...props} />;
+  return (
+    <div
+      className={cn(badgeVariants({ variant, size }), className)}
+      {...props}
+    />
+  );
 };
 
 const variantOptions = Object.keys(BadgeVariants.variant);
