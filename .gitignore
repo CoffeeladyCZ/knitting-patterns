@@ -26,5 +26,8 @@ dist-ssr
 .env-local
 .env-production
 
+server-key.pem
+server.pem
+
 *storybook.log
 storybook-static
