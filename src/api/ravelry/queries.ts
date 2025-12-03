@@ -15,6 +15,7 @@ export const getYarns = async (): Promise<YarnResponse> => {
   return fetcher<YarnResponse>(API_ROUTES.YARNS);
 };
 
-export const getPatterns = async (): Promise<PatternResponse> => {
-  return fetcher<PatternResponse>(API_ROUTES.PATTERNS);
+export const getPatterns = async (query?: string): Promise<PatternResponse> => {
+  const queryParams = query ? { query } : undefined;
+  return fetcher<PatternResponse>(API_ROUTES.PATTERNS, {}, queryParams);
 };

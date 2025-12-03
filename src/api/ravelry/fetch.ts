@@ -1,9 +1,15 @@
 export const fetcher = async <TResponse>(
   endpoint: string,
   options: RequestInit = {},
+  queryParams?: Record<string, string>,
 ): Promise<TResponse> => {
   const baseUrl = import.meta.env.VITE_RAVELRY_URL;
-  const url = `${baseUrl}/${endpoint}`;
+  let url = `${baseUrl}/${endpoint}`;
+
+  if (queryParams) {
+    const params = new URLSearchParams(queryParams);
+    url += `?${params.toString()}`;
+  }
 
   const base64Credentials = btoa(
     `${import.meta.env.VITE_RAVELRY_USERNAME}:${import.meta.env.VITE_RAVELRY_KEY}`,
