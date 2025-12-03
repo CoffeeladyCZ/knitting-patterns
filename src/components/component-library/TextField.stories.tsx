@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Search } from "lucide-react";
 import { TextField } from "./TextField";
 import { Label } from "../component-library/Label";
 
@@ -22,6 +23,11 @@ const meta = {
       description: "The type of input",
       control: "select",
       options: ["text", "email", "password", "number", "tel", "url", "search"],
+    },
+    variant: {
+      description: "The variant of the text field",
+      control: "select",
+      options: ["default", "full"],
     },
     disabled: {
       description: "Whether the input is disabled",
@@ -82,6 +88,30 @@ export const WithError: Story = {
       <p id="name-error" className="text-sm text-destructive">
         Name is required
       </p>
+    </div>
+  ),
+};
+
+export const WithSearchIcon: Story = {
+  args: {
+    type: "search",
+    placeholder: "Search...",
+    icon: Search,
+  },
+};
+
+export const FullVariant: Story = {
+  args: {
+    variant: "full",
+    placeholder: "Full width text field",
+    className: "",
+  },
+  parameters: {
+    layout: "padded",
+  },
+  render: (args) => (
+    <div className="w-full">
+      <TextField {...args} />
     </div>
   ),
 };

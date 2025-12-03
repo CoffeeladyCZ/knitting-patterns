@@ -14,13 +14,13 @@ export const Patterns = () => {
     return <div>Error: {error?.message}</div>;
   }
   return (
-    <>
-      <h1 className="text-3xl font-semibold mb-4 text-start p-4">Patterns</h1>
-      <div className="flex flex-wrap gap-4 p-4">
+    <div className="flex flex-col p-4">
+      <h1 className="text-3xl font-semibold mb-4 text-start">Patterns</h1>
+      <div className="flex flex-wrap gap-4 mt-6">
         {data?.patterns.map((pattern) => (
           <PatternCard key={pattern.id} pattern={pattern} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
