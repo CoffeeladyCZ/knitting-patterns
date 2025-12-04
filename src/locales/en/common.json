@@ -1,0 +1,18 @@
+{
+  "loading": "Loading...",
+  "error": "Error: {{error}}",
+  "patterns": {
+    "title": "Patterns",
+    "description": "Patterns powered by Ravelry",
+    "search": "Search patterns...",
+    "card": {
+      "free": "Free",
+      "paid": "Paid",
+      "designer": "Designer"
+    }
+  },
+  "yarns": {
+    "title": "Yarns",
+    "search": "Search yarns..."
+  }
+}
