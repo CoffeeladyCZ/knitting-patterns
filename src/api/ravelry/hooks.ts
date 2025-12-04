@@ -2,10 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "./constants";
 import { getPatterns, getPatternCategories, getYarns } from "./queries";
 
-export const useGetPatterns = (query?: string) =>
+export const useGetPatterns = (
+  query?: string,
+  page: number = 1,
+  pageSize: number = 9,
+) =>
   useQuery({
-    queryFn: () => getPatterns(query),
-    queryKey: [QUERY_KEYS.LIST, query],
+    queryFn: () => getPatterns(query, page, pageSize),
+    queryKey: [QUERY_KEYS.LIST, query, page, pageSize],
     enabled: true,
   });
 
