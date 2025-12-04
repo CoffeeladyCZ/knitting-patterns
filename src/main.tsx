@@ -4,6 +4,7 @@ import "../styles/global.css";
 import App from "./App.tsx";
 import "../sentry.js";
 import ReactGA from "react-ga4";
+import "../i18n";
 
 ReactGA.initialize(import.meta.env.VITE_GA4_MEASURENT_ID);
 

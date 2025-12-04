@@ -16,8 +16,10 @@ import {
   type SearchSchema,
 } from "../../schema/patternSchema";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const Patterns = () => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined);
   const { data, isLoading, isError, error } = useGetPatterns(searchQuery);
 
@@ -34,18 +36,18 @@ export const Patterns = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}</div>;
   }
 
   if (isError) {
-    return <div>Error: {error?.message}</div>;
+    return <div>{t("error", { error: error?.message })}</div>;
   }
   return (
     <div className="flex flex-col p-4">
       <div className="flex items-center gap-2 mb-6">
-        <h1 className="text-3xl text-start">Patterns</h1>
+        <h1 className="text-3xl text-start">{t("patterns.title")}</h1>
         <p className="text-sm text-gray-500 font-borel">
-          ... powered on Ravelry
+          {t("patterns.description")}
         </p>
       </div>
       <Form {...form}>
@@ -58,7 +60,7 @@ export const Patterns = () => {
                 <FormControl>
                   <TextField
                     type="text"
-                    placeholder="Search patterns..."
+                    placeholder={t("patterns.search")}
                     icon={Search}
                     {...field}
                   />
@@ -67,7 +69,11 @@ export const Patterns = () => {
               </FormItem>
             )}
           />
-          {error && <div className="text-red-500">{error}</div>}
+          {error && (
+            <div className="text-destructive">
+              {t("patterns.error", { error: error })}
+            </div>
+          )}
         </form>
       </Form>
       <div className="flex flex-wrap gap-4 mt-6">

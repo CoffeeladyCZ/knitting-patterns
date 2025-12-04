@@ -73,6 +73,7 @@ describe("Patterns Dashboard", () => {
 
     render(<Patterns />);
     expect(screen.getByText("Patterns")).toBeInTheDocument();
+    expect(screen.getByText("Patterns powered by Ravelry")).toBeInTheDocument();
     expect(screen.getByText("Test Pattern 1")).toBeInTheDocument();
     expect(screen.getByText("Test Pattern 2")).toBeInTheDocument();
   });
@@ -164,6 +165,6 @@ describe("Patterns Dashboard", () => {
     } as ReturnType<typeof hooks.useGetPatterns>);
 
     render(<Patterns />);
-    expect(screen.getByText("... powered on Ravelry")).toBeInTheDocument();
+    expect(screen.getByText("Patterns powered by Ravelry")).toBeInTheDocument();
   });
 });
