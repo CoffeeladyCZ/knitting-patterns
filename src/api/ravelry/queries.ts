@@ -15,7 +15,17 @@ export const getYarns = async (): Promise<YarnResponse> => {
   return fetcher<YarnResponse>(API_ROUTES.YARNS);
 };
 
-export const getPatterns = async (query?: string): Promise<PatternResponse> => {
-  const queryParams = query ? { query } : undefined;
+export const getPatterns = async (
+  query?: string,
+  page: number = 1,
+  pageSize: number = 9,
+): Promise<PatternResponse> => {
+  const queryParams: Record<string, string> = {
+    page: page.toString(),
+    page_size: pageSize.toString(),
+  };
+  if (query) {
+    queryParams.query = query;
+  }
   return fetcher<PatternResponse>(API_ROUTES.PATTERNS, {}, queryParams);
 };
