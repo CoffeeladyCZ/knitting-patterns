@@ -44,14 +44,14 @@ export const Patterns = () => {
   }
   return (
     <div className="flex flex-col p-4">
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex items-center gap-2 mb-10 px-4">
         <h1 className="text-3xl text-start">{t("patterns.title")}</h1>
         <p className="text-sm text-gray-500 font-borel">
           {t("patterns.description")}
         </p>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 px-4">
           <FormField
             control={form.control}
             name="search"

@@ -16,7 +16,7 @@ function CardRoot({
     <div
       data-slot="card"
       className={cn(
-        "flex flex-col items-center border border-gray-300 rounded-md p-4 cursor-pointer",
+        "flex flex-col items-center p-4 cursor-pointer",
         cardVariantClasses[variant],
         className,
       )}
