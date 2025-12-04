@@ -3,7 +3,7 @@
   "error": "Error: {{error}}",
   "patterns": {
     "title": "Patterns",
-    "description": "Patterns powered by Ravelry",
+    "description": "... powered by Ravelry",
     "search": "Search patterns...",
     "next": "More patterns",
     "card": {
