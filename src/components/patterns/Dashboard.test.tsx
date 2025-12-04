@@ -108,7 +108,7 @@ describe("Patterns Dashboard", () => {
     await user.keyboard("{Enter}");
 
     await waitFor(() => {
-      expect(mockUseGetPatterns).toHaveBeenCalledWith("sweater");
+      expect(mockUseGetPatterns).toHaveBeenCalledWith("sweater", 1, 9);
     });
   });
 
@@ -152,7 +152,7 @@ describe("Patterns Dashboard", () => {
     await user.keyboard("{Enter}");
 
     await waitFor(() => {
-      expect(mockUseGetPatterns).toHaveBeenCalled();
+      expect(mockUseGetPatterns).toHaveBeenCalledWith(undefined, 1, 9);
     });
   });
 
