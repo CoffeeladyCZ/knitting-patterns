@@ -176,3 +176,95 @@ export type PatternResponse = {
   patterns: Pattern[];
   paginator: Paginator;
 };
+
+export type DownloadLocation = {
+  url?: string;
+  free?: boolean;
+  type?: "ravelry" | "external";
+};
+
+export type PatternAttribute = {
+  id?: number;
+  name?: string;
+  permalink?: string;
+};
+
+export type Pack = {
+  yarn_id?: number;
+  [key: string]: unknown;
+};
+
+export type Printing = {
+  id?: number;
+  name?: string;
+  [key: string]: unknown;
+};
+
+export type Craft = {
+  id: number;
+  name: string;
+  permalink: string;
+};
+
+export type PatternDetail = {
+  comments_count?: number;
+  craft: Craft;
+  created_at?: string;
+  currency?: string;
+  currency_symbol?: string;
+  difficulty_average?: number;
+  difficulty_count?: number;
+  download_location?: DownloadLocation;
+  downloadable?: boolean;
+  favorites_count?: number;
+  free?: boolean;
+  gauge?: string;
+  gauge_description?: string;
+  gauge_divisor?: number;
+  gauge_pattern?: string;
+  gauge_repeats?: string;
+  generally_available?: string;
+  has_uk_terminology?: boolean;
+  has_us_terminology?: boolean;
+  id?: number;
+  languages?: string[];
+  name?: string;
+  notes_html?: string;
+  notes?: string;
+  packs?: Pack[];
+  pattern_attributes?: PatternAttribute[];
+  pattern_author?: Designer;
+  pattern_categories?: PatternCategory[];
+  pattern_needle_sizes?: string;
+  pattern_type?: string;
+  pdf_in_library?: boolean;
+  pdf_url?: string;
+  permalink?: string;
+  personal_attributes?: PersonalAttributes;
+  photos?: Photo[];
+  price?: string;
+  printings?: Printing[];
+  product_id?: number;
+  projects_count?: number;
+  published?: string;
+  queued_projects_count?: number;
+  rating_average?: number;
+  rating_count?: number;
+  ravelry_download?: boolean;
+  row_gauge?: string;
+  sizes_available?: string;
+  unlisted_product_ids?: number[];
+  updated_at?: string;
+  url?: string;
+  volumes_in_library?: number[];
+  yardage?: number;
+  yardage_description?: string;
+  yardage_max?: number;
+  yarn_list_type?: string;
+  yarn_weight?: YarnWeight[];
+  yarn_weight_description?: string;
+};
+
+export type PatternDetailResponse = {
+  pattern: PatternDetail;
+};

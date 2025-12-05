@@ -3,6 +3,7 @@ import type {
   PatternCategoriesResponse,
   PatternResponse,
   YarnResponse,
+  PatternDetailResponse,
 } from "./types";
 import { fetcher } from "./fetch";
 
@@ -28,4 +29,12 @@ export const getPatterns = async (
     queryParams.query = query;
   }
   return fetcher<PatternResponse>(API_ROUTES.PATTERNS, {}, queryParams);
+};
+
+export const getPatternDetail = async (
+  id: number,
+): Promise<PatternDetailResponse> => {
+  return fetcher<PatternDetailResponse>(
+    `${API_ROUTES.PATTERNS_DETAIL}/${id}.json`,
+  );
 };

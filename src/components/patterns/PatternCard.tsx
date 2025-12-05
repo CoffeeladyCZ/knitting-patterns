@@ -4,7 +4,13 @@ import { useTranslation } from "react-i18next";
 import { Icon } from "../component-library/Icon";
 import { DollarSign } from "lucide-react";
 
-export const PatternCard = ({ pattern }: { pattern: Pattern }) => {
+export const PatternCard = ({
+  pattern,
+  onClick,
+}: {
+  pattern: Pattern;
+  onClick: () => void;
+}) => {
   const { t } = useTranslation();
   return (
     <div className="relative">
@@ -15,7 +21,7 @@ export const PatternCard = ({ pattern }: { pattern: Pattern }) => {
           className="text-secondary absolute top-2 right-2"
         />
       )}
-      <Card className="gap-2">
+      <Card className="gap-2" onClick={onClick}>
         <Card.Header>
           <Card.Content className="flex flex-col gap-1 w-48">
             <div className="w-48 h-48 border-orange border-3 p-2 overflow-hidden mb-2">

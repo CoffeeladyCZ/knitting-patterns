@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "./constants";
-import { getPatterns, getPatternCategories, getYarns } from "./queries";
+import {
+  getPatterns,
+  getPatternCategories,
+  getYarns,
+  getPatternDetail,
+} from "./queries";
 
 export const useGetPatterns = (
   query?: string,
@@ -23,4 +28,10 @@ export const useGetPatternsCategories = () =>
   useQuery({
     queryFn: getPatternCategories,
     queryKey: [QUERY_KEYS.PATTERNS_CATEGORIES],
+  });
+
+export const useGetPatternDetail = (id: number) =>
+  useQuery({
+    queryFn: () => getPatternDetail(id),
+    queryKey: [QUERY_KEYS.PATTERNS_DETAIL, id],
   });
