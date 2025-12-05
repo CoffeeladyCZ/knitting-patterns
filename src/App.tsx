@@ -5,6 +5,7 @@ import { Routes, Route, BrowserRouter } from "react-router";
 import * as Sentry from "@sentry/react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { Patterns } from "./components/patterns/Dashboard";
+import { PatternDetail } from "./components/patterns/PatternDetail";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Patterns />} />
             <Route path="/yarns" element={<Yarns />} />
+            <Route path="/patterns/:id" element={<PatternDetail />} />
           </Routes>
         </BrowserRouter>
       </ErrorBoundary>

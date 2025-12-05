@@ -19,9 +19,9 @@ import {
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import type { Pattern } from "../../api/ravelry/types";
+import { useNavigate } from "react-router";
 
 export const Patterns = () => {
-  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined);
   const [page, setPage] = useState(1);
   const [allPatterns, setAllPatterns] = useState<Pattern[]>([]);
@@ -29,7 +29,11 @@ export const Patterns = () => {
     page: number;
     last_page: number;
   } | null>(null);
-  const pageSize = 9;
+
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const pageSize = 10;
   const { data, isLoading, isError, error } = useGetPatterns(
     searchQuery,
     page,
@@ -123,7 +127,11 @@ export const Patterns = () => {
       </Form>
       <div className="flex flex-wrap gap-4 mt-6">
         {allPatterns.map((pattern) => (
-          <PatternCard key={pattern.id} pattern={pattern} />
+          <PatternCard
+            key={pattern.id}
+            pattern={pattern}
+            onClick={() => navigate(`/patterns/${pattern.id}`)}
+          />
         ))}
       </div>
       {hasNextPage && (

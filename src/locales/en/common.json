@@ -10,6 +10,13 @@
       "free": "Free",
       "paid": "Paid",
       "designer": "Designer"
+    },
+    "detail": {
+      "download": "Download pattern",
+      "price": "Price",
+      "currency": "Currency",
+      "craft": "Craft",
+      "author": "Author"
     }
   },
   "yarns": {

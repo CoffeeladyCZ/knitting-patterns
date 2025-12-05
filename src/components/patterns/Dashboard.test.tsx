@@ -1,9 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "../../test/test-utils";
 import userEvent from "@testing-library/user-event";
+import { type ReactElement } from "react";
 import { Patterns } from "./Dashboard";
 import * as hooks from "../../api/ravelry/hooks";
 import type { PatternResponse } from "../../api/ravelry/types";
+import { MemoryRouter } from "react-router";
 
 vi.mock("../../api/ravelry/hooks");
 
@@ -33,6 +35,10 @@ const mockPatterns: PatternResponse = {
   },
 };
 
+const renderWithRouter = (component: ReactElement) => {
+  return render(<MemoryRouter>{component}</MemoryRouter>);
+};
+
 describe("Patterns Dashboard", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -46,7 +52,7 @@ describe("Patterns Dashboard", () => {
       error: null,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
@@ -59,7 +65,7 @@ describe("Patterns Dashboard", () => {
       error: { message: errorMessage } as Error,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     expect(screen.getByText(`Error: ${errorMessage}`)).toBeInTheDocument();
   });
 
@@ -71,7 +77,7 @@ describe("Patterns Dashboard", () => {
       error: null,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     expect(screen.getByText("Patterns")).toBeInTheDocument();
     expect(screen.getByText("... powered by Ravelry")).toBeInTheDocument();
     expect(screen.getByText("Test Pattern 1")).toBeInTheDocument();
@@ -86,7 +92,7 @@ describe("Patterns Dashboard", () => {
       error: null,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     expect(
       screen.getByPlaceholderText("Search patterns..."),
     ).toBeInTheDocument();
@@ -101,14 +107,14 @@ describe("Patterns Dashboard", () => {
       error: null,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     const searchInput = screen.getByPlaceholderText("Search patterns...");
 
     await user.type(searchInput, "sweater");
     await user.keyboard("{Enter}");
 
     await waitFor(() => {
-      expect(mockUseGetPatterns).toHaveBeenCalledWith("sweater", 1, 9);
+      expect(mockUseGetPatterns).toHaveBeenCalledWith("sweater", 1, 10);
     });
   });
 
@@ -121,7 +127,7 @@ describe("Patterns Dashboard", () => {
       error: null,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     const searchInput = screen.getByPlaceholderText(
       "Search patterns...",
     ) as HTMLInputElement;
@@ -145,14 +151,14 @@ describe("Patterns Dashboard", () => {
       error: null,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     const searchInput = screen.getByPlaceholderText("Search patterns...");
 
     await user.type(searchInput, "   ");
     await user.keyboard("{Enter}");
 
     await waitFor(() => {
-      expect(mockUseGetPatterns).toHaveBeenCalledWith(undefined, 1, 9);
+      expect(mockUseGetPatterns).toHaveBeenCalledWith(undefined, 1, 10);
     });
   });
 
@@ -164,7 +170,7 @@ describe("Patterns Dashboard", () => {
       error: null,
     } as ReturnType<typeof hooks.useGetPatterns>);
 
-    render(<Patterns />);
+    renderWithRouter(<Patterns />);
     expect(screen.getByText("... powered by Ravelry")).toBeInTheDocument();
   });
 });
